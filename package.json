@@ -1,0 +1,21 @@
+{
+  "name": "hearthtools-node-api",
+  "version": "0.0.1",
+  "description": "Node.js API for the Hearthtools project",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha --timeout 10000 --exit",
+    "live": "nodemon server.js"
+  },
+  "author": "casey.j.lawrence@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "mocha": "^5.0.5"
+  }
+}
