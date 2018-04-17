@@ -34,8 +34,8 @@ let cache = (duration) => {
 };
 
 let exampleController = require('./controllers/exampleController');
-let getHSJson = require('./controllers/hsJsonController');
-let cardSearchSingle = require('./controllers/cardController');
+let hsJsonController = require('./controllers/hsJsonController');
+let cardController = require('./controllers/cardController');
 
 // middleware to use for all requests
 router.use((req, res, next) => {
@@ -44,10 +44,8 @@ router.use((req, res, next) => {
 });
 
 router.get(['/', '/about'], cache(CACHE_DURATION), exampleController);
-
-router.get('/hsjson', cache(CACHE_DURATION), getHSJson);
-
-router.post('/card', cardSearchSingle);
+router.all('/hsjson', cache(CACHE_DURATION), hsJsonController);
+router.all('/card', cardController);
 
 app.use('/', router);
 

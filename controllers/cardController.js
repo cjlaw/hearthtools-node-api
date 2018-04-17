@@ -1,6 +1,8 @@
+const express = require('express');
+const router = express.Router();
 const request = require('request-promise');
-var path = require('path');
-var dotEnvPath = path.resolve('./.env');
+const path = require('path');
+const dotEnvPath = path.resolve('./.env');
 require('dotenv').config({ path: dotEnvPath});
 const hsApiUrl = 'https://omgvamp-hearthstone-v1.p.mashape.com/cards/search/';
 const hsApiHeaders = {
@@ -17,14 +19,14 @@ const _cardSearchSingle = async (term) => {
   return parsedSearchResult[0].imgGold;
 };
 
-const cardSearchSingle = async (req, res) => {
+router.post('/card', async (req, res) => {
   try {
-    let searchResult = await _cardSearchSingle(req.body.term);
+    let searchResult = await _cardSearchSingle(req.body.query);
     res.status(200).json({ result: searchResult });
   }
   catch (err) {
     res.status(500).send(err);
   }
-};
+});
 
-module.exports = cardSearchSingle;
+module.exports = router;

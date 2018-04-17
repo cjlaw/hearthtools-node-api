@@ -15,8 +15,9 @@ describe('card controller', () => {
     it('it should return a card search result', (done) => {
       chai.request(server)
         .post('/card')
-        .send({'term':'sylvanas'})
+        .send({'query':'sylvanas'})
         .end(async (err, res) => {
+          res.status.should.equal(200);
           res.text.should.equal(JSON.stringify(EXAMPLE_RESULT_SYLVANAS));
           await done();
         });
