@@ -48,7 +48,7 @@ router.use((req, res, next) => {
 router.get(['/', '/about'], cache(CACHE_DURATION), exampleController);
 router.all('/hsjson', cache(CACHE_DURATION), hsJsonController);
 router.all('/card', cardController);
-router.all('/decode', deckController);
+router.all('/deck/*', deckController);
 router.all('/collection/*', collectionController);
 
 app.use('/', router);

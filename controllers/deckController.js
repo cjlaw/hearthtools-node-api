@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const request = require('request-promise');
-const { decode } = require("deckstrings");
+const { decode, encode } = require("deckstrings");
 
 const url = 'https://api.hearthstonejson.com/v1/latest/enUS/cards.json';
 const hscard_headers = {
@@ -54,7 +54,7 @@ const _fetchHearthstoneJson = () => {
     return request(opts);
 };
 
-router.post('/decode', async (req, res) => {
+router.post('/deck/decode', async (req, res) => {
   try {            
     let cardStream = await _fetchHearthstoneJson();
     cardsjson = JSON.parse(cardStream);
@@ -66,5 +66,17 @@ router.post('/decode', async (req, res) => {
     res.status(500).send(err);
   }
 });
+
+router.post('/deck/encode', async (req, res) => {
+    try {            
+      let cardStream = await _fetchHearthstoneJson();
+      cardsjson = JSON.parse(cardStream);
+      let encodedDeckString = encode(JSON.parse(req.body.query));
+      res.status(200).json({ result: encodedDeckString });    
+    }
+    catch (err) {
+      res.status(500).send({result: null, error: true, errorMsg: err.message || err });
+    }
+  });
 
 module.exports = router;
