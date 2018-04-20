@@ -4,7 +4,6 @@ const q = require('q');
 const YUI = require('yui').YUI;
 const html2json = require('html2json').html2json;
 var fs = require("fs");
-console.log(process.cwd())
 let hpCardsJson = JSON.parse(fs.readFileSync('./hp_cards.json', 'utf8'));
 
 // Inspired by/based on https://github.com/Freezard/hs-collection-tracker
