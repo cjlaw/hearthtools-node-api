@@ -12,7 +12,7 @@ describe('example controller', () => {
         chai.request(server)
             .get('/')
             .end((err, res) => {
-                res.text.should.equal('Hello World?');
+                res.text.should.equal('Hello World!');
               done();
             });
       });
