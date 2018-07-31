@@ -62,7 +62,6 @@ describe('deck controller', () => {
         .post('/deck/encode')
         .send({'query': JSON.stringify(EXAMPLE_DECK_TO_ENCODE)})
         .end(async (err, res) => {
-          console.log(res.text)
           res.status.should.equal(200);
           let response = JSON.parse(res.text);
           let result = response.result;

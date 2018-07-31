@@ -21,7 +21,7 @@ const EXAMPLE_RESULT = {
 
 describe('collection controller', () => {
   describe('/GET /collection/:username', () => {
-    it('it should return a card collection', (done) => {
+    it('it should fetch a card collection given a valid user', (done) => {
       chai.request(server)
         .get('/collection/ultimakillz')
         .end(async (err, res) => {
